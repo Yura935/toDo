@@ -1,0 +1,63 @@
+<section class="signUp">
+    <form class="signUp-form" [formGroup]="myForm">
+        <div class="signUp-form__head">
+            <h2>Create Account</h2>
+            <p>Let’s get productive toghether!</p>
+        </div>
+
+        <div class="signUp-form__body">
+            <div class="signUp-form__body--box">
+                <div class="box-item">
+                    <label for="fullName">Full Name *</label>
+                    <input formControlName="fullName" type="text" name="fullName" id="fullName">
+                </div>
+                <div class="box-item">
+                    <label for="userName">Username *</label>
+                    <input formControlName="userName" type="text" name="userName" id="userName">
+                </div>
+            </div>
+
+            <div class="signUp-form__body--box">
+                <div class="box-item">
+                    <label for="email">Email *</label>
+                    <input formControlName="userEmail"
+                        [style.borderColor]="myForm.controls['userEmail'].invalid && myForm.controls['userEmail'].touched ? '#E59D40' : '#D9D9D9'"
+                        type="email" name="email" id="email">
+                    <p *ngIf="myForm.controls['userEmail'].invalid && myForm.controls['userEmail'].touched">Please enter
+                        a valid email address</p>
+                </div>
+                <div class="box-item">
+                    <label for="phone">Phone number *</label>
+                    <input formControlName="userPhone"
+                        [style.borderColor]="myForm.controls['userPhone'].invalid && myForm.controls['userPhone'].touched ? '#E59D40' : '#D9D9D9'"
+                        type="text" name="phone" id="phone">
+                    <p *ngIf="myForm.controls['userPhone'].invalid && myForm.controls['userPhone'].touched">Please enter
+                        a valid phone number</p>
+                </div>
+            </div>
+
+            <div class="signUp-form__body--box">
+                <div class="box-item address">
+                    <label for="address">Address line *</label>
+                    <input formControlName="userAddress" type="text" name="address" id="address">
+                </div>
+                <div class="box-item suite">
+                    <label for="suite">Suite</label>
+                    <input formControlName="userSuite" type="text" name="suite" id="suite">
+                </div>
+            </div>
+            
+            <div class="signUp-form__body--box">
+                <div class="box-item">
+                    <label for="city">City *</label>
+                    <input formControlName="userCity" type="text" name="city" id="city">
+                </div>
+                <div class="box-item">
+                    <label for="zip">ZIP Code *</label>
+                    <input formControlName="userZipCode" type="text" name="zip" id="zip">
+                </div>
+            </div>
+        </div>
+        <button class="signUp-form__submit" (click)="createAcc()">Create Account</button>
+    </form>
+</section>

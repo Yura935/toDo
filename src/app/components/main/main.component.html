@@ -1,0 +1,58 @@
+<section class="main">
+    <div class="main-box">
+        <div class="main-box__head">
+            <h2>All ToDo's</h2>
+            <button (click)="targetModal()">Add a ToDo</button>
+        </div>
+
+        <div class="main-box__body">
+            <div class="main-box__body--item" *ngFor="let item of currentArr; let i=index">
+                <input type="checkbox" [checked]="item.completed" (click)="isCheck(i)">
+                <p [style.text-decoration]="item.completed ? 'line-through' : 'unset'">{{ item.title }}</p>
+                <div class="item-edit" (click)="targetEdit(i)"></div>
+                <div class="item-delete" (click)="targetDel(i)"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="addModal" *ngIf="addNew">
+    <div class="addModal-inner">
+        <div class="addModal-inner__title">
+            <h2 *ngIf="add">Add a ToDo</h2>
+            <h2 *ngIf="!add">Edit a ToDo</h2>
+            <div class="close" (click)="targetModal()"></div>
+        </div>
+
+        <div class="addModal-inner__text">
+            <textarea name="toDo" [(ngModel)]="toDo" (input)="checkLength()" placeholder="Start typing ..."></textarea>
+        </div>
+
+        <p class="addModal-inner__empty" *ngIf="empty">This field is required!</p>
+
+        <button class="addModal-inner__button" *ngIf="add"
+            [style.background]="!isEmpty ? '#D0D0D0' : 'linear-gradient(270deg, #1EA39B, #38EF7D)'"
+            (click)="addItem()">Save ToDo</button>
+
+        <button class="addModal-inner__button" *ngIf="!add"
+            [style.background]="!isEmpty ? '#D0D0D0' : 'linear-gradient(270deg, #1EA39B, #38EF7D)'"
+            (click)="updateItem()">Save ToDo</button>
+    </div>
+</section>
+
+<section class="delToDo" *ngIf="del">
+    <div class="delToDo-inner">
+        <div class="delToDo-inner__title">
+            <h2>Removing a ToDo</h2>
+            <div class="close" (click)="targetDel()"></div>
+        </div>
+
+        <div class="delToDo-inner__warning">
+            <p>Are you sure you want to remove this ToDo? It would be impossible to restore it afterwards</p>
+        </div>
+
+        <p class="delToDo-inner__text">{{ currentArr[currentId].title }}</p>
+
+        <button class="delToDo-inner__button" (click)="deleteItem()">Yes, Remove ToDo</button>
+    </div>
+</section>

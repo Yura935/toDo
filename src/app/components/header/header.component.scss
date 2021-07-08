@@ -1,0 +1,19 @@
+header {
+  height: 80px;
+  width: 1440px;
+  border-bottom: 1px solid #E1E1E1;
+
+  .logo {
+    height: inherit;
+    width: 340px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &-inner {
+      height: 33px;
+      width: 120px;
+      background-image: url(../../../assets/icons/logo1.svg);
+    }
+  }
+}
